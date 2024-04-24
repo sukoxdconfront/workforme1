@@ -3,11 +3,11 @@ import subprocess
 import time
 
 # Run commands as sudo
-subprocess.run(["apt", "update"], stdout=subprocess.PIPE)
-subprocess.run(["apt", "install", "tmate", "-y"], stdout=subprocess.PIPE)
+subprocess.run(["sudo", "apt", "update"], stdout=subprocess.PIPE)
+subprocess.run(["sudo", "apt", "install", "tmate", "-y"], stdout=subprocess.PIPE)
 
 # Start tmate
-subprocess.run(["tmate"], stdout=subprocess.PIPE)
+subprocess.run(["sudo", "tmate"], stdout=subprocess.PIPE)
 
 # Display a message to the user
 st.markdown("Tmate is now running. You can connect to it using the following command:")
