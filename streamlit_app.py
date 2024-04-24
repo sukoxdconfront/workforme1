@@ -1,17 +1,17 @@
 import streamlit as st
+import subprocess
+import time
 
-st.title("Tmate Installer")
+# Run commands as sudo
+subprocess.run(["apt", "update"], stdout=subprocess.PIPE)
+subprocess.run(["apt", "install", "tmate", "-y"], stdout=subprocess.PIPE)
 
-st.write("This script will install tmate on your server.")
+# Start tmate
+subprocess.run(["tmate"], stdout=subprocess.PIPE)
 
-if st.button("Install Tmate"):
-    st.write("Installing tmate...")
+# Display a message to the user
+st.markdown("Tmate is now running. You can connect to it using the following command:")
+st.code("ssh -R 2222:localhost:2222 user@your_server_ip")
 
-    # Install tmate
-    st.command("apt update")
-    st.command("apt install tmate")
-
-    # Start tmate
-    st.command("tmate")
-
-    st.write("Tmate installed and running!")
+# Wait for 1 week
+time.sleep(60 * 60 * 24 * 7)
